@@ -1,0 +1,106 @@
+{%- comment -%}
+  Ficha TCG del producto, leida desde los tags de la taxonomia:
+  game:x, set:x, condition:NM|LP|MP|HP, lang:es|en, rarity:x.
+  Preventa: tag "preventa" mas metafield custom.release_date.
+  Uso: {% render 'tcg-specs', product: product %}
+{%- endcomment -%}
+
+{%- liquid
+  assign tcg_game = ''
+  assign tcg_set = ''
+  assign tcg_condition = ''
+  assign tcg_lang = ''
+  assign tcg_rarity = ''
+
+  for tag in product.tags
+    if tag contains 'game:'
+      assign game_handle = tag | remove: 'game:'
+      case game_handle
+        when 'pokemon'
+          assign tcg_game = 'Pokémon'
+        when 'mtg'
+          assign tcg_game = 'Magic: The Gathering'
+        when 'yugioh'
+          assign tcg_game = 'Yu-Gi-Oh!'
+        when 'onepiece'
+          assign tcg_game = 'One Piece'
+        when 'lorcana'
+          assign tcg_game = 'Lorcana'
+        else
+          assign tcg_game = game_handle | capitalize
+      endcase
+    elsif tag contains 'set:'
+      assign tcg_set = tag | remove: 'set:' | split: '-' | join: ' ' | capitalize
+    elsif tag contains 'condition:'
+      assign cond = tag | remove: 'condition:'
+      case cond
+        when 'NM'
+          assign tcg_condition = 'Near Mint (NM)'
+        when 'LP'
+          assign tcg_condition = 'Lightly Played (LP)'
+        when 'MP'
+          assign tcg_condition = 'Moderately Played (MP)'
+        when 'HP'
+          assign tcg_condition = 'Heavily Played (HP)'
+        else
+          assign tcg_condition = cond
+      endcase
+    elsif tag contains 'lang:'
+      assign lang_code = tag | remove: 'lang:'
+      case lang_code
+        when 'es'
+          assign tcg_lang = 'Español'
+        when 'en'
+          assign tcg_lang = 'Inglés'
+        else
+          assign tcg_lang = lang_code | upcase
+      endcase
+    elsif tag contains 'rarity:'
+      assign tcg_rarity = tag | remove: 'rarity:' | split: '-' | join: ' ' | capitalize
+    endif
+  endfor
+
+  assign is_preventa = false
+  if product.tags contains 'preventa'
+    assign is_preventa = true
+  endif
+-%}
+
+{%- if is_preventa -%}
+  <p class="tcg-preventa-note">
+    <span class="badge color-scheme-5">Preventa</span>
+    {%- if product.metafields.custom.release_date.value != blank %}
+      Lanzamiento: {{ product.metafields.custom.release_date.value | date: '%d/%m/%Y' }}
+    {%- endif %}
+  </p>
+{%- endif -%}
+
+{%- if tcg_game != blank
+  or tcg_set != blank
+  or tcg_condition != blank
+  or tcg_lang != blank
+  or tcg_rarity != blank
+-%}
+  <dl class="tcg-specs">
+    {%- if tcg_game != blank -%}
+      <dt>Juego</dt>
+      <dd>{{ tcg_game }}</dd>
+    {%- endif -%}
+    {%- if tcg_set != blank -%}
+      <dt>Set</dt>
+      <dd>{{ tcg_set }}</dd>
+    {%- endif -%}
+    {%- if tcg_condition != blank -%}
+      <dt>Condición</dt>
+      <dd>{{ tcg_condition }}</dd>
+    {%- endif -%}
+    {%- if tcg_lang != blank -%}
+      <dt>Idioma</dt>
+      <dd>{{ tcg_lang }}</dd>
+    {%- endif -%}
+    {%- if tcg_rarity != blank -%}
+      <dt>Rareza</dt>
+      <dd>{{ tcg_rarity }}</dd>
+    {%- endif -%}
+  </dl>
+{%- endif -%}

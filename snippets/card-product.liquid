@@ -127,7 +127,9 @@
               </h3>
             </div>
             <div class="card__badge {{ settings.badge_position }}">
-              {%- if card_product.available == false -%}
+              {%- if card_product.tags contains 'preventa' -%}
+                <span class="badge badge--bottom-left color-scheme-5">Preventa</span>
+              {%- elsif card_product.available == false -%}
                 <span
                   id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                   class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
@@ -169,6 +171,8 @@
               {%- endif -%}
 
               <span class="caption-large light">{{ block.settings.description | escape }}</span>
+
+              {% render 'tcg-card-chips', product: card_product %}
 
               {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
                 {% liquid
@@ -551,7 +555,9 @@
             {% endif %}
           {% endif %}
           <div class="card__badge {{ settings.badge_position }}">
-            {%- if card_product.available == false -%}
+            {%- if card_product.tags contains 'preventa' -%}
+              <span class="badge badge--bottom-left color-scheme-5">Preventa</span>
+            {%- elsif card_product.available == false -%}
               <span
                 id="Badge-{{ section_id }}-{{ card_product.id }}"
                 class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"

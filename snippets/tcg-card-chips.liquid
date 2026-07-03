@@ -1,0 +1,35 @@
+{%- comment -%}
+  Chips de condicion e idioma para la product card, desde los tags
+  condition:XX y lang:xx. En preventa agrega la fecha de lanzamiento.
+  Uso: {% render 'tcg-card-chips', product: card_product %}
+{%- endcomment -%}
+
+{%- liquid
+  assign chip_condition = ''
+  assign chip_lang = ''
+  for tag in product.tags
+    if tag contains 'condition:'
+      assign chip_condition = tag | remove: 'condition:'
+    elsif tag contains 'lang:'
+      assign chip_lang = tag | remove: 'lang:' | upcase
+    endif
+  endfor
+  assign release_date = ''
+  if product.tags contains 'preventa' and product.metafields.custom.release_date.value != blank
+    assign release_date = product.metafields.custom.release_date.value | date: '%d/%m/%Y'
+  endif
+-%}
+
+{%- if chip_condition != blank or chip_lang != blank or release_date != blank -%}
+  <div class="tcg-chips">
+    {%- if chip_condition != blank -%}
+      <span class="tcg-chip tcg-chip--condition">{{ chip_condition }}</span>
+    {%- endif -%}
+    {%- if chip_lang != blank -%}
+      <span class="tcg-chip">{{ chip_lang }}</span>
+    {%- endif -%}
+    {%- if release_date != blank -%}
+      <span class="tcg-chip tcg-chip--preventa">Sale el {{ release_date }}</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -55,3 +55,71 @@ h1, h2, h3, .h0, .h1, .h2, .h3 {
 .header__heading-logo {
   border-radius: 8px;
 }
+
+/* Chips TCG en product cards: condicion, idioma, fecha de preventa */
+.tcg-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.tcg-chip {
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  border-radius: 2rem;
+  font-size: var(--tcg-text-xs);
+  font-weight: 600;
+  background-color: var(--tcg-cream);
+  border: 1px solid var(--tcg-coral);
+  color: var(--tcg-oxblood);
+}
+
+.tcg-chip--condition {
+  background-color: var(--tcg-gold);
+  border-color: var(--tcg-gold);
+  color: var(--tcg-ink);
+}
+
+.tcg-chip--preventa {
+  background-color: var(--tcg-ember);
+  border-color: var(--tcg-ember);
+  color: var(--tcg-cream);
+}
+
+/* Ficha TCG en la pagina de producto */
+.tcg-specs {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem 1.6rem;
+  margin: 0;
+  padding: 1.2rem 1.6rem;
+  border: 1px solid var(--tcg-coral);
+  border-radius: 8px;
+  background-color: var(--tcg-cream);
+  font-size: var(--tcg-text-sm);
+}
+
+.tcg-specs dt {
+  font-weight: 700;
+  color: var(--tcg-oxblood);
+}
+
+.tcg-specs dd {
+  margin: 0;
+}
+
+.tcg-preventa-note {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--tcg-text-sm);
+  font-weight: 600;
+  color: var(--tcg-ember);
+}
+
+.tcg-preventa-note .badge {
+  background-color: var(--tcg-ember);
+  border-color: var(--tcg-ember);
+  color: var(--tcg-cream);
+}

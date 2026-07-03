@@ -1,0 +1,164 @@
+{%- comment -%}
+  Hero de marca TCG Center: degradado rojo a oxblood con destellos
+  de energia (starburst), titular en Anton y CTAs. El color-scheme-3
+  da botones dorados sobre el fondo rojo.
+{%- endcomment -%}
+
+<style>
+  .tcg-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--tcg-red) 0%, #b81c1a 55%, var(--tcg-oxblood) 100%);
+    padding: {{ section.settings.padding_top }}px 3rem {{ section.settings.padding_bottom }}px;
+    text-align: center;
+  }
+
+  .tcg-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .tcg-hero__heading {
+    font-family: var(--font-heading-family);
+    font-size: clamp(var(--tcg-text-2xl), 7vw, var(--tcg-text-3xl));
+    line-height: 1.05;
+    color: var(--tcg-cream);
+    margin: 0 0 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .tcg-hero__text {
+    font-size: var(--tcg-text-lg);
+    color: var(--tcg-coral);
+    margin: 0 auto 3rem;
+    max-width: 56rem;
+  }
+
+  .tcg-hero__buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .tcg-hero__burst {
+    position: absolute;
+    width: 22rem;
+    height: 22rem;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .tcg-hero__burst--left {
+    left: -6rem;
+    top: -4rem;
+    color: var(--tcg-ember);
+  }
+
+  .tcg-hero__burst--right {
+    right: -6rem;
+    bottom: -4rem;
+    color: var(--tcg-gold);
+    transform: rotate(20deg);
+  }
+
+  @media screen and (max-width: 749px) {
+    .tcg-hero__burst {
+      width: 12rem;
+      height: 12rem;
+    }
+  }
+</style>
+
+<div class="tcg-hero color-scheme-3">
+  <svg class="tcg-hero__burst tcg-hero__burst--left" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M50 0 58 36 92 20 66 46 100 50 66 54 92 80 58 64 50 100 42 64 8 80 34 54 0 50 34 46 8 20 42 36Z"/>
+  </svg>
+  <svg class="tcg-hero__burst tcg-hero__burst--right" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M50 0 58 36 92 20 66 46 100 50 66 54 92 80 58 64 50 100 42 64 8 80 34 54 0 50 34 46 8 20 42 36Z"/>
+  </svg>
+
+  <div class="tcg-hero__content">
+    <h2 class="tcg-hero__heading">{{ section.settings.heading }}</h2>
+    {%- if section.settings.text != blank -%}
+      <p class="tcg-hero__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+    <div class="tcg-hero__buttons">
+      {%- if section.settings.button_label_1 != blank -%}
+        <a href="{{ section.settings.button_link_1 }}" class="button">{{ section.settings.button_label_1 }}</a>
+      {%- endif -%}
+      {%- if section.settings.button_label_2 != blank -%}
+        <a href="{{ section.settings.button_link_2 }}" class="button button--secondary">{{ section.settings.button_label_2 }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TCG hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titular",
+      "default": "Tu centro de cartas en Lima"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto",
+      "default": "Singles, sellado, preventa y accesorios de Pokémon, Magic, Yu-Gi-Oh! y One Piece, en español y en inglés."
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Boton principal",
+      "default": "Ver novedades"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Enlace del boton principal"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Boton secundario",
+      "default": "Preventa"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Enlace del boton secundario"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacio superior",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacio inferior",
+      "default": 96
+    }
+  ],
+  "presets": [
+    {
+      "name": "TCG hero"
+    }
+  ]
+}
+{% endschema %}

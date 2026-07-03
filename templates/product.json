@@ -16,6 +16,12 @@
         "price": {
           "type": "price"
         },
+        "tcg_specs": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'tcg-specs', product: product %}"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -47,6 +53,7 @@
         "vendor",
         "title",
         "price",
+        "tcg_specs",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
