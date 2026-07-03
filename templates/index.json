@@ -77,7 +77,7 @@
       "settings": {
         "title": "Preventa",
         "heading_size": "h1",
-        "description": "Reserva hoy y recíbelo el día del lanzamiento.",
+        "description": "<p>Reserva hoy y recíbelo el día del lanzamiento.</p>",
         "show_description": true,
         "description_style": "body",
         "collection": "preventa",
