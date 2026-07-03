@@ -172,7 +172,16 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          {%- comment -%} Fallback: emblema desde assets hasta subir el logo en el editor {%- endcomment -%}
+          <div class="header__heading-logo-wrapper">
+            <img
+              src="{{ 'tcg-logo.jpg' | asset_url }}"
+              class="header__heading-logo motion-reduce"
+              width="{{ settings.logo_width }}"
+              height="{{ settings.logo_width }}"
+              alt="{{ shop.name | escape }}"
+            >
+          </div>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -215,7 +224,16 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          {%- comment -%} Fallback: emblema desde assets hasta subir el logo en el editor {%- endcomment -%}
+          <div class="header__heading-logo-wrapper">
+            <img
+              src="{{ 'tcg-logo.jpg' | asset_url }}"
+              class="header__heading-logo motion-reduce"
+              width="{{ settings.logo_width }}"
+              height="{{ settings.logo_width }}"
+              alt="{{ shop.name | escape }}"
+            >
+          </div>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}

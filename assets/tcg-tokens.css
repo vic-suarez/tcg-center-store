@@ -1,0 +1,57 @@
+/*
+  TCG Center Peru: tokens de marca y piel sobre Dawn.
+  Hex aproximados desde el logo, confirmar con el manual de marca.
+  Se carga despues de base.css, por eso estas variables :root
+  ganan sobre las que Dawn define inline en theme.liquid.
+*/
+
+:root {
+  /* Paleta de marca */
+  --tcg-red: #e12b24; /* rojo escarlata, primario */
+  --tcg-oxblood: #5a0e12; /* rojo muy oscuro, hover y trazo */
+  --tcg-coral: #f2937e; /* coral calido, degradados y fondos suaves */
+  --tcg-ember: #ec6a1e; /* naranja energia, CTAs y preventa */
+  --tcg-gold: #f4c13a; /* dorado, precios destacados y badges */
+  --tcg-cream: #fff6f0; /* fondo calido casi blanco */
+  --tcg-ink: #1c0b0b; /* casi negro calido, texto principal */
+
+  /* Escala tipografica */
+  --tcg-text-xs: 1.2rem;
+  --tcg-text-sm: 1.4rem;
+  --tcg-text-base: 1.6rem;
+  --tcg-text-lg: 2rem;
+  --tcg-text-xl: 2.8rem;
+  --tcg-text-2xl: 4rem;
+  --tcg-text-3xl: 6.4rem;
+
+  /* Tipografias de marca: Anton display, Inter cuerpo.
+     Cargadas via Google Fonts en theme.liquid; estas variables
+     pisan las del font picker de Shopify. */
+  --font-heading-family: 'Anton', 'Archivo Black', 'Arial Narrow', sans-serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 400;
+  --font-body-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-weight-bold: 700;
+}
+
+/* Anton es condensada: sin el letter-spacing amplio de Dawn */
+h1, h2, h3, .h0, .h1, .h2, .h3 {
+  letter-spacing: 0.02em;
+}
+
+/* Botones: hover a oxblood en los schemes claros (boton rojo) */
+.button {
+  transition: background-color 0.15s ease;
+}
+
+.color-scheme-1 .button:not(.button--secondary):not(.button--tertiary):not([disabled]):hover,
+.color-scheme-2 .button:not(.button--secondary):not(.button--tertiary):not([disabled]):hover {
+  background-color: var(--tcg-oxblood);
+}
+
+/* Logo en header: el JPG es cuadrado, limitar altura */
+.header__heading-logo {
+  border-radius: 8px;
+}
