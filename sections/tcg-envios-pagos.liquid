@@ -1,0 +1,94 @@
+{%- comment -%}
+  Pagina Envios y pagos. Tarifas y metodos van como placeholder hasta que
+  Vic configure las zonas de envio y la pasarela real (Fase 6).
+  Datos de relleno marcados con <!-- FAKE: reemplazar -->.
+{%- endcomment -%}
+
+<style>
+  .tcg-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .tcg-card {
+    background: var(--tcg-cream);
+    border: 2px solid var(--tcg-coral);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+  .tcg-card h2 { margin-top: 0; }
+  .tcg-card ul { margin: 0; padding-left: 1.2rem; line-height: 1.7; }
+  .tcg-card li { margin-bottom: 0.4rem; }
+</style>
+
+<div class="tcg-page" style="padding: {{ section.settings.padding_top }}px 3rem {{ section.settings.padding_bottom }}px;">
+  <p class="tcg-page__eyebrow">Envios y pagos</p>
+  <h1 class="tcg-page__title">Como te llega y como pagas</h1>
+  <p class="tcg-page__lead">
+    Enviamos a todo el Peru y tienes retiro gratis en nuestras dos sedes.
+  </p>
+
+  <div class="tcg-cols">
+    <div class="tcg-card">
+      <h2>Envios</h2>
+      <ul>
+        <li>Delivery en Lima: S/ 00.00 <!-- FAKE: reemplazar con tarifa real de la zona Lima --></li>
+        <li>Provincias por courier (Olva o Shalom): S/ 00.00 <!-- FAKE: reemplazar con tarifa real --></li>
+        <li>Retiro en tienda (Lince o Surco): gratis</li>
+        <li>Tiempo de entrega estimado: 1 a 3 dias en Lima, 3 a 7 en provincia <!-- FAKE: confirmar tiempos --></li>
+      </ul>
+    </div>
+
+    <div class="tcg-card">
+      <h2>Pagos</h2>
+      <ul>
+        <li>Tarjetas de credito y debito <!-- FAKE: confirmar tras conectar Culqi o Mercado Pago --></li>
+        <li>Yape <!-- FAKE: confirmar disponibilidad segun pasarela --></li>
+        <li>PagoEfectivo <!-- FAKE: confirmar disponibilidad segun pasarela --></li>
+        <li>Pago contra entrega solo en retiro en tienda <!-- FAKE: confirmar politica --></li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Preventas</h2>
+  <p>
+    En productos de preventa el cobro se hace al momento de la compra y el envio
+    o retiro se coordina cuando llega el lanzamiento. La fecha estimada aparece en
+    cada producto de preventa.
+  </p>
+
+  <p>
+    Tienes una duda antes de comprar? Escribenos por WhatsApp con el boton verde
+    de la esquina y te ayudamos.
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "TCG Envios y pagos",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacio superior",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacio inferior",
+      "default": 56
+    }
+  ],
+  "presets": [{ "name": "TCG Envios y pagos" }]
+}
+{% endschema %}

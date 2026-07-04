@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "tcg-nosotros",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

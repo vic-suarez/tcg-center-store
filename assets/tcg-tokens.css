@@ -123,3 +123,54 @@ h1, h2, h3, .h0, .h1, .h2, .h3 {
   border-color: var(--tcg-ember);
   color: var(--tcg-cream);
 }
+
+/* Paginas estaticas (Nosotros, Locales, Envios y pagos, FAQ) */
+.tcg-page {
+  max-width: 68rem;
+  margin: 0 auto;
+  color: var(--tcg-ink);
+}
+
+.tcg-page__eyebrow {
+  font-family: var(--font-heading-family);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--tcg-ember);
+  font-size: var(--tcg-text-sm);
+  margin: 0 0 0.75rem;
+}
+
+.tcg-page__title {
+  font-family: var(--font-heading-family);
+  text-transform: uppercase;
+  font-size: clamp(var(--tcg-text-2xl), 6vw, var(--tcg-text-3xl));
+  line-height: 1.05;
+  color: var(--tcg-oxblood);
+  margin: 0 0 2rem;
+}
+
+.tcg-page__lead {
+  font-size: var(--tcg-text-lg);
+  line-height: 1.5;
+  margin: 0 0 2rem;
+}
+
+.tcg-page h2 {
+  font-family: var(--font-heading-family);
+  text-transform: uppercase;
+  font-size: var(--tcg-text-xl);
+  color: var(--tcg-red);
+  margin: 2.5rem 0 1rem;
+}
+
+.tcg-page p {
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+@media (max-width: 749px) {
+  .tcg-page {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

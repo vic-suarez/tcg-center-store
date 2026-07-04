@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "tcg-faq",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

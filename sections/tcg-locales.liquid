@@ -1,0 +1,112 @@
+{%- comment -%}
+  Pagina Locales: sedes Lince y Surco con direccion, horario y mapa embebido.
+  Datos de relleno marcados con <!-- FAKE: reemplazar -->.
+{%- endcomment -%}
+
+<style>
+  .tcg-sedes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .tcg-sede {
+    background: var(--tcg-cream);
+    border: 2px solid var(--tcg-coral);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .tcg-sede__body { padding: 1.5rem; }
+  .tcg-sede__name {
+    font-family: var(--font-heading-family);
+    text-transform: uppercase;
+    font-size: var(--tcg-text-xl);
+    color: var(--tcg-red);
+    margin: 0 0 1rem;
+  }
+  .tcg-sede dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1rem; }
+  .tcg-sede dt { font-weight: 700; color: var(--tcg-oxblood); }
+  .tcg-sede dd { margin: 0; }
+  .tcg-sede__map { width: 100%; height: 220px; border: 0; display: block; }
+</style>
+
+<div class="tcg-page" style="padding: {{ section.settings.padding_top }}px 3rem {{ section.settings.padding_bottom }}px;">
+  <p class="tcg-page__eyebrow">Locales</p>
+  <h1 class="tcg-page__title">Visitanos en Lince y Surco</h1>
+  <p class="tcg-page__lead">
+    Puedes comprar online y recoger en tienda, o pasar a jugar y ver el stock en persona.
+  </p>
+
+  <div class="tcg-sedes">
+    <div class="tcg-sede">
+      <iframe
+        class="tcg-sede__map"
+        src="https://www.google.com/maps?q=Lince,Lima,Peru&output=embed"
+        loading="lazy"
+        title="Mapa sede Lince"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <!-- FAKE: reemplazar por el embed real de Google Maps de la sede Lince -->
+      <div class="tcg-sede__body">
+        <h2 class="tcg-sede__name">Sede Lince</h2>
+        <dl>
+          <dt>Direccion</dt>
+          <dd>Av. Ejemplo 123, Lince, Lima <!-- FAKE: reemplazar direccion real --></dd>
+          <dt>Horario</dt>
+          <dd>Lun a sab 11:00 a 20:00, dom 12:00 a 18:00 <!-- FAKE: reemplazar horario real --></dd>
+          <dt>Referencia</dt>
+          <dd>A media cuadra del parque ejemplo <!-- FAKE: reemplazar referencia --></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="tcg-sede">
+      <iframe
+        class="tcg-sede__map"
+        src="https://www.google.com/maps?q=Santiago+de+Surco,Lima,Peru&output=embed"
+        loading="lazy"
+        title="Mapa sede Surco"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <!-- FAKE: reemplazar por el embed real de Google Maps de la sede Surco -->
+      <div class="tcg-sede__body">
+        <h2 class="tcg-sede__name">Sede Surco</h2>
+        <dl>
+          <dt>Direccion</dt>
+          <dd>Av. Ejemplo 456, Santiago de Surco, Lima <!-- FAKE: reemplazar direccion real --></dd>
+          <dt>Horario</dt>
+          <dd>Lun a sab 11:00 a 20:00, dom 12:00 a 18:00 <!-- FAKE: reemplazar horario real --></dd>
+          <dt>Referencia</dt>
+          <dd>Frente al centro comercial ejemplo <!-- FAKE: reemplazar referencia --></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TCG Locales",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacio superior",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacio inferior",
+      "default": 56
+    }
+  ],
+  "presets": [{ "name": "TCG Locales" }]
+}
+{% endschema %}

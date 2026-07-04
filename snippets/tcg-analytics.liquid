@@ -1,0 +1,38 @@
+{%- comment -%}
+  Fase 7: slots de analitica. GA4 y Meta Pixel con IDs de relleno marcados.
+  Guardado: mientras el ID siga siendo el placeholder no se carga nada, asi que
+  esto no rompe la tienda hasta que Vic pegue los IDs reales.
+
+  Nota: Shopify recomienda GA4 tambien via Settings > Customer events (server side).
+  Este snippet cubre el pixel de cliente para v1. Ver FASE-5-6-7-ADMIN.md.
+{%- endcomment -%}
+
+{%- assign ga4_id = 'G-XXXXXXXXXX' -%}{%- comment -%}<!-- FAKE: reemplazar por el Measurement ID real de GA4 -->{%- endcomment -%}
+{%- assign meta_pixel_id = '000000000000000' -%}{%- comment -%}<!-- FAKE: reemplazar por el Pixel ID real de Meta -->{%- endcomment -%}
+
+{%- unless ga4_id == 'G-XXXXXXXXXX' -%}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga4_id }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ ga4_id }}');
+  </script>
+{%- endunless -%}
+
+{%- unless meta_pixel_id == '000000000000000' -%}
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '{{ meta_pixel_id }}');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id={{ meta_pixel_id }}&ev=PageView&noscript=1"/></noscript>
+{%- endunless -%}

@@ -1,0 +1,67 @@
+{%- comment -%}
+  Pagina Nosotros de TCG Center. Contenido en codigo con la piel de marca.
+  Los datos de relleno van marcados con <!-- FAKE: reemplazar --> para grep.
+{%- endcomment -%}
+
+<div class="tcg-page" style="padding: {{ section.settings.padding_top }}px 3rem {{ section.settings.padding_bottom }}px;">
+  <p class="tcg-page__eyebrow">Nosotros</p>
+  <h1 class="tcg-page__title">Tu tienda de trading card games en Lima</h1>
+
+  <p class="tcg-page__lead">
+    Somos TCG Center Peru, una comunidad de jugadores y coleccionistas que abrio
+    sus puertas para acercar el hobby a mas gente en el pais.
+    <!-- FAKE: reemplazar historia real de la tienda -->
+  </p>
+
+  <h2>Que vendemos</h2>
+  <p>
+    Cartas sueltas (singles), producto sellado, preventas, accesorios como fundas
+    y deck boxes, y peluches y figuras. Trabajamos Pokemon, Magic, Yu-Gi-Oh!,
+    One Piece y mas juegos que vamos sumando segun la demanda.
+  </p>
+
+  <h2>Por que la version en espanol importa</h2>
+  <p>
+    Priorizamos producto en espanol porque es lo que la mayoria de jugadores de
+    aca busca: precios mas accesibles, reglas en tu idioma y sets pensados para la
+    region. Cuando tenemos version en ingles lo dejamos claro en cada producto,
+    para que sepas exactamente que estas comprando.
+  </p>
+
+  <h2>Nuestra promesa</h2>
+  <p>
+    Cartas revisadas y clasificadas por condicion, autenticidad garantizada y
+    atencion directa por WhatsApp cuando tengas dudas. Nos ves seguido en los
+    Sabados TCG Center, donde la comunidad se junta a jugar.
+    <!-- FAKE: ajustar promesa segun la tienda real -->
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "TCG Nosotros",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacio superior",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacio inferior",
+      "default": 56
+    }
+  ],
+  "presets": [{ "name": "TCG Nosotros" }]
+}
+{% endschema %}
