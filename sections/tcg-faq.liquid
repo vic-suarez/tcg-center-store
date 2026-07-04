@@ -1,5 +1,6 @@
 {%- comment -%}
-  Pagina FAQ. Acordeon nativo con <details>, sin JS. Copy de tienda TCG.
+  Pagina FAQ. Acordeon nativo con <details>, sin JS. Preguntas via bloques
+  de schema (tipo faq_item), editables desde el theme editor.
 {%- endcomment -%}
 
 <style>
@@ -39,77 +40,12 @@
   <h1 class="tcg-page__title">Lo que mas nos preguntan</h1>
 
   <div class="tcg-faq">
-    <details>
-      <summary>Como clasifican la condicion de las cartas?</summary>
-      <div class="tcg-faq__answer">
-        Usamos la escala estandar del hobby: NM (near mint, casi perfecta),
-        LP (ligeramente jugada), MP (moderadamente jugada) y HP (muy jugada).
-        Cada single indica su condicion y, cuando aplica, mostramos fotos reales.
-      </div>
-    </details>
-
-    <details>
-      <summary>Las cartas son autenticas?</summary>
-      <div class="tcg-faq__answer">
-        Si. Todo nuestro producto es original y garantizamos autenticidad. Si
-        alguna vez tienes dudas de un pedido, escribenos y lo revisamos contigo.
-      </div>
-    </details>
-
-    <details>
-      <summary>Que diferencia hay entre version en espanol e ingles?</summary>
-      <div class="tcg-faq__answer">
-        El idioma cambia el texto de la carta, no su legalidad de juego en la
-        mayoria de formatos. Priorizamos espanol por precio y accesibilidad, y
-        marcamos claramente cada producto con su idioma (ES o EN).
-      </div>
-    </details>
-
-    <details>
-      <summary>Como funcionan las preventas?</summary>
-      <div class="tcg-faq__answer">
-        Reservas y pagas el producto al momento de la compra. El envio o retiro se
-        coordina cuando el set llega al pais. La fecha estimada de lanzamiento
-        aparece en cada producto de preventa.
-      </div>
-    </details>
-
-    <details>
-      <summary>Cuanto demora el envio?</summary>
-      <div class="tcg-faq__answer">
-        En Lima suele llegar en 1 a 3 dias habiles y a provincia entre 3 y 7 dias
-        por courier (Olva o Shalom). Los tiempos exactos y las tarifas los ves en
-        la pagina de envios y pagos.
-        <!-- FAKE: confirmar tiempos reales -->
-      </div>
-    </details>
-
-    <details>
-      <summary>Aceptan cambios o devoluciones?</summary>
-      <div class="tcg-faq__answer">
-        Si el producto llego con un problema o no coincide con lo descrito, lo
-        cambiamos o devolvemos el dinero. Escribenos por WhatsApp dentro de los
-        7 dias de recibido con tu numero de pedido.
-        <!-- FAKE: confirmar politica y plazo real -->
-      </div>
-    </details>
-
-    <details>
-      <summary>Puedo recoger en tienda?</summary>
-      <div class="tcg-faq__answer">
-        Si, compras online y eliges retiro en la sede de Lince o Surco sin costo
-        de envio. Te avisamos cuando tu pedido este listo para recoger.
-      </div>
-    </details>
-
-    <details>
-      <summary>Que metodos de pago tienen?</summary>
-      <div class="tcg-faq__answer">
-        Tarjetas de credito y debito, y billeteras locales segun la pasarela
-        activa. Revisa la pagina de envios y pagos para el detalle actualizado.
-        <!-- FAKE: confirmar tras conectar la pasarela real -->
-      </div>
-    </details>
+    {%- for block in section.blocks -%}
+      <details {{ block.shopify_attributes }}>
+        <summary>{{ block.settings.question }}</summary>
+        <div class="tcg-faq__answer">{{ block.settings.answer }}</div>
+      </details>
+    {%- endfor -%}
   </div>
 </div>
 
@@ -138,6 +74,86 @@
       "default": 56
     }
   ],
-  "presets": [{ "name": "TCG FAQ" }]
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "Pregunta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Respuesta"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TCG FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Como clasifican la condicion de las cartas?",
+            "answer": "<p>Usamos la escala estandar del hobby: NM (near mint, casi perfecta), LP (ligeramente jugada), MP (moderadamente jugada) y HP (muy jugada). Cada single indica su condicion y, cuando aplica, mostramos fotos reales.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Las cartas son autenticas?",
+            "answer": "<p>Si. Todo nuestro producto es original y garantizamos autenticidad. Si alguna vez tienes dudas de un pedido, escribenos y lo revisamos contigo.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Que diferencia hay entre version en espanol e ingles?",
+            "answer": "<p>El idioma cambia el texto de la carta, no su legalidad de juego en la mayoria de formatos. Priorizamos espanol por precio y accesibilidad, y marcamos claramente cada producto con su idioma (ES o EN).</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Como funcionan las preventas?",
+            "answer": "<p>Reservas y pagas el producto al momento de la compra. El envio o retiro se coordina cuando el set llega al pais. La fecha estimada de lanzamiento aparece en cada producto de preventa.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Cuanto demora el envio?",
+            "answer": "<p>En Lima suele llegar en 1 a 3 dias habiles y a provincia entre 3 y 7 dias por courier (Olva o Shalom). Los tiempos exactos y las tarifas los ves en la pagina de envios y pagos.<!-- FAKE: confirmar tiempos reales --></p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Aceptan cambios o devoluciones?",
+            "answer": "<p>Si el producto llego con un problema o no coincide con lo descrito, lo cambiamos o devolvemos el dinero. Escribenos por WhatsApp dentro de los 7 dias de recibido con tu numero de pedido.<!-- FAKE: confirmar politica y plazo real --></p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Puedo recoger en tienda?",
+            "answer": "<p>Si, compras online y eliges retiro en la sede de Lince o Surco sin costo de envio. Te avisamos cuando tu pedido este listo para recoger.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Que metodos de pago tienen?",
+            "answer": "<p>Tarjetas de credito y debito, y billeteras locales segun la pasarela activa. Revisa la pagina de envios y pagos para el detalle actualizado.<!-- FAKE: confirmar tras conectar la pasarela real --></p>"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
